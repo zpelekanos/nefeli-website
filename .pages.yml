@@ -28,21 +28,13 @@ content:
         label: Brand
         type: object
         fields:
-          - name: name
-            label: Όνομα
-            type: string
-            required: true
-          - name: profession
-            label: Επαγγελματικός τίτλος
-            type: string
-            required: true
+          - { name: name, label: Όνομα, type: string, required: true }
+          - { name: profession, label: Επαγγελματικός τίτλος, type: string, required: true }
       - name: footer
         label: Footer
         type: object
         fields:
-          - name: tagline
-            label: Περιγραφή footer
-            type: text
+          - { name: tagline, label: Περιγραφή footer, type: text }
 
   - name: home
     label: Αρχική σελίδα
@@ -50,75 +42,49 @@ content:
     path: content/home.json
     format: json
     fields:
+      - name: visibility
+        label: Εμφάνιση ενοτήτων
+        type: object
+        fields:
+          - { name: hero, label: Εμφάνιση Hero, type: boolean, default: true }
+          - { name: services, label: Εμφάνιση καρτών υπηρεσιών, type: boolean, default: true }
+          - { name: cta, label: Εμφάνιση κάτω πρόσκλησης, type: boolean, default: true }
       - name: hero
         label: Hero
         type: object
         fields:
-          - name: eyebrow
-            label: Μικρός τίτλος
-            type: string
-          - name: line1
-            label: Τίτλος — γραμμή 1
-            type: string
-          - name: line2_prefix
-            label: Τίτλος — γραμμή 2 (πρώτο μέρος)
-            type: string
-          - name: line2_emphasis
-            label: Τίτλος — γραμμή 2 (τελευταίες λέξεις)
-            type: string
-          - name: line3_prefix
-            label: Τίτλος — γραμμή 3 (πρώτο μέρος)
-            type: string
-          - name: line3_accent
-            label: Τίτλος — χρωματισμένη λέξη
-            type: string
-          - name: subtitle
-            label: Υπότιτλος
-            type: text
+          - { name: eyebrow, label: Μικρός τίτλος, type: string }
+          - { name: line1, label: Τίτλος — γραμμή 1, type: string }
+          - { name: line2_prefix, label: Τίτλος — γραμμή 2 (πρώτο μέρος), type: string }
+          - { name: line2_emphasis, label: Τίτλος — γραμμή 2 (τελευταίες λέξεις), type: string }
+          - { name: line3_prefix, label: Τίτλος — γραμμή 3 (πρώτο μέρος), type: string }
+          - { name: line3_accent, label: Τίτλος — χρωματισμένη λέξη, type: string }
+          - { name: subtitle, label: Υπότιτλος, type: text }
           - name: image
             label: Hero εικόνα
             type: image
-            description: Αν μείνει κενό, παραμένει η υπάρχουσα εικόνα του design. Ανέβασε νέα εικόνα εδώ για αντικατάσταση.
-            options:
-              media: images
-          - name: primary_button
-            label: Κουμπί 1
-            type: string
-          - name: secondary_button
-            label: Κουμπί 2
-            type: string
-      - name: services_title
-        label: Τίτλος υπηρεσιών
-        type: string
+            description: Αν μείνει κενό, παραμένει η υπάρχουσα εικόνα του design.
+            options: { media: images }
+          - { name: primary_button, label: Κουμπί 1, type: string }
+          - { name: secondary_button, label: Κουμπί 2, type: string }
+      - { name: services_title, label: Τίτλος υπηρεσιών, type: string }
       - name: services
         label: Κάρτες αρχικής
         type: object
         list:
-          min: 3
-          max: 3
-          collapsible:
-            collapsed: true
-            summary: "{title}"
+          min: 1
+          max: 6
+          collapsible: { collapsed: true, summary: "{title}" }
         fields:
-          - name: title
-            label: Τίτλος
-            type: string
-          - name: description
-            label: Περιγραφή
-            type: text
+          - { name: title, label: Τίτλος, type: string }
+          - { name: description, label: Περιγραφή, type: text }
       - name: cta
         label: Κάτω πρόσκληση επικοινωνίας
         type: object
         fields:
-          - name: title
-            label: Τίτλος
-            type: string
-          - name: text
-            label: Κείμενο
-            type: text
-          - name: button
-            label: Κουμπί
-            type: string
+          - { name: title, label: Τίτλος, type: string }
+          - { name: text, label: Κείμενο, type: text }
+          - { name: button, label: Κουμπί, type: string }
 
   - name: about
     label: Ποια είμαι
@@ -126,6 +92,14 @@ content:
     path: content/about.json
     format: json
     fields:
+      - name: visibility
+        label: Εμφάνιση ενοτήτων
+        type: object
+        fields:
+          - { name: hero, label: Εμφάνιση επάνω ενότητας, type: boolean, default: true }
+          - { name: intro, label: Εμφάνιση «Λίγα λόγια», type: boolean, default: true }
+          - { name: values, label: Εμφάνιση «Αξίες», type: boolean, default: true }
+          - { name: cta, label: Εμφάνιση κάτω ενότητας, type: boolean, default: true }
       - name: hero
         label: Επάνω ενότητα
         type: object
@@ -141,12 +115,7 @@ content:
         fields:
           - { name: kicker, label: Μικρός τίτλος, type: string }
           - { name: title, label: Τίτλος, type: string }
-          - name: paragraphs
-            label: Παράγραφοι
-            type: text
-            list:
-              min: 3
-              max: 3
+          - { name: paragraphs, label: Παράγραφοι, type: text, list: { min: 3, max: 3 } }
       - name: values
         label: Αξίες
         type: object
@@ -157,11 +126,9 @@ content:
             label: Κάρτες
             type: object
             list:
-              min: 3
-              max: 3
-              collapsible:
-                collapsed: true
-                summary: "{title}"
+              min: 1
+              max: 6
+              collapsible: { collapsed: true, summary: "{title}" }
             fields:
               - { name: title, label: Τίτλος, type: string }
               - { name: text, label: Κείμενο, type: text }
@@ -179,6 +146,15 @@ content:
     path: content/approach.json
     format: json
     fields:
+      - name: visibility
+        label: Εμφάνιση ενοτήτων
+        type: object
+        fields:
+          - { name: hero, label: Εμφάνιση επάνω ενότητας, type: boolean, default: true }
+          - { name: steps, label: Εμφάνιση «Πώς δουλεύουμε», type: boolean, default: true }
+          - { name: quote, label: Εμφάνιση quote, type: boolean, default: true }
+          - { name: framework, label: Εμφάνιση πλαισίου, type: boolean, default: true }
+          - { name: cta, label: Εμφάνιση κάτω ενότητας, type: boolean, default: true }
       - name: hero
         label: Επάνω ενότητα
         type: object
@@ -198,11 +174,9 @@ content:
             label: Βήματα
             type: object
             list:
-              min: 3
-              max: 3
-              collapsible:
-                collapsed: true
-                summary: "{title}"
+              min: 1
+              max: 6
+              collapsible: { collapsed: true, summary: "{title}" }
             fields:
               - { name: title, label: Τίτλος, type: string }
               - { name: text, label: Κείμενο, type: text }
@@ -218,12 +192,7 @@ content:
         fields:
           - { name: kicker, label: Μικρός τίτλος, type: string }
           - { name: title, label: Τίτλος, type: string }
-          - name: paragraphs
-            label: Παράγραφοι
-            type: text
-            list:
-              min: 2
-              max: 2
+          - { name: paragraphs, label: Παράγραφοι, type: text, list: { min: 2, max: 2 } }
       - name: cta
         label: Κάτω ενότητα
         type: object
@@ -238,6 +207,14 @@ content:
     path: content/services.json
     format: json
     fields:
+      - name: visibility
+        label: Εμφάνιση ενοτήτων
+        type: object
+        fields:
+          - { name: hero, label: Εμφάνιση επάνω ενότητας, type: boolean, default: true }
+          - { name: main, label: Εμφάνιση βασικών υπηρεσιών, type: boolean, default: true }
+          - { name: note, label: Εμφάνιση ενημερωτικής ενότητας, type: boolean, default: true }
+          - { name: cta, label: Εμφάνιση κάτω ενότητας, type: boolean, default: true }
       - name: hero
         label: Επάνω ενότητα
         type: object
@@ -257,11 +234,9 @@ content:
             label: Υπηρεσίες
             type: object
             list:
-              min: 3
-              max: 3
-              collapsible:
-                collapsed: true
-                summary: "{title}"
+              min: 1
+              max: 8
+              collapsible: { collapsed: true, summary: "{title}" }
             fields:
               - { name: title, label: Τίτλος, type: string }
               - { name: text, label: Περιγραφή, type: text }
@@ -271,12 +246,7 @@ content:
         fields:
           - { name: kicker, label: Μικρός τίτλος, type: string }
           - { name: title, label: Τίτλος, type: string }
-          - name: paragraphs
-            label: Παράγραφοι
-            type: text
-            list:
-              min: 2
-              max: 2
+          - { name: paragraphs, label: Παράγραφοι, type: text, list: { min: 2, max: 2 } }
       - name: cta
         label: Κάτω ενότητα
         type: object
@@ -291,6 +261,13 @@ content:
     path: content/therapy.json
     format: json
     fields:
+      - name: visibility
+        label: Εμφάνιση ενοτήτων
+        type: object
+        fields:
+          - { name: hero, label: Εμφάνιση επάνω ενότητας, type: boolean, default: true }
+          - { name: faq, label: Εμφάνιση συχνών ερωτήσεων, type: boolean, default: true }
+          - { name: cta, label: Εμφάνιση κάτω ενότητας, type: boolean, default: true }
       - name: hero
         label: Επάνω ενότητα
         type: object
@@ -310,11 +287,9 @@ content:
             label: Ερωτήσεις
             type: object
             list:
-              min: 5
-              max: 5
-              collapsible:
-                collapsed: true
-                summary: "{question}"
+              min: 1
+              max: 12
+              collapsible: { collapsed: true, summary: "{question}" }
             fields:
               - { name: question, label: Ερώτηση, type: string }
               - { name: answer, label: Απάντηση, type: text }
@@ -332,6 +307,14 @@ content:
     path: content/space.json
     format: json
     fields:
+      - name: visibility
+        label: Εμφάνιση ενοτήτων
+        type: object
+        fields:
+          - { name: hero, label: Εμφάνιση επάνω ενότητας, type: boolean, default: true }
+          - { name: gallery, label: Εμφάνιση gallery, type: boolean, default: true }
+          - { name: access, label: Εμφάνιση πρόσβασης, type: boolean, default: true }
+          - { name: cta, label: Εμφάνιση κάτω ενότητας, type: boolean, default: true }
       - name: hero
         label: Επάνω ενότητα
         type: object
@@ -352,30 +335,22 @@ content:
             label: Φωτογραφίες
             type: object
             list:
-              min: 5
-              max: 5
-              collapsible:
-                collapsed: true
-                summary: "{label}"
+              min: 1
+              max: 10
+              collapsible: { collapsed: true, summary: "{label}" }
             fields:
               - { name: label, label: Λεζάντα, type: string }
               - name: image
                 label: Εικόνα
                 type: image
-                options:
-                  media: images
+                options: { media: images }
       - name: access
         label: Πρόσβαση
         type: object
         fields:
           - { name: kicker, label: Μικρός τίτλος, type: string }
           - { name: title, label: Τίτλος, type: string }
-          - name: paragraphs
-            label: Παράγραφοι
-            type: text
-            list:
-              min: 2
-              max: 2
+          - { name: paragraphs, label: Παράγραφοι, type: text, list: { min: 2, max: 2 } }
       - name: cta
         label: Κάτω ενότητα
         type: object
@@ -390,6 +365,13 @@ content:
     path: content/contact.json
     format: json
     fields:
+      - name: visibility
+        label: Εμφάνιση ενοτήτων
+        type: object
+        fields:
+          - { name: hero, label: Εμφάνιση επάνω ενότητας, type: boolean, default: true }
+          - { name: details, label: Εμφάνιση στοιχείων επικοινωνίας, type: boolean, default: true }
+          - { name: form, label: Εμφάνιση φόρμας, type: boolean, default: true }
       - name: hero
         label: Επάνω ενότητα
         type: object
