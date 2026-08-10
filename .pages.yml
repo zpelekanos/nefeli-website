@@ -1,0 +1,423 @@
+media:
+  - name: images
+    label: Εικόνες
+    input: assets/uploads
+    output: /assets/uploads
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp, avif]
+    rename: safe
+
+settings:
+  hide: true
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      update: "Update {path} via CMS"
+      create: "Add {path} via CMS"
+
+content:
+  - name: global
+    label: Γενικά στοιχεία
+    type: file
+    path: content/global.json
+    format: json
+    fields:
+      - name: brand
+        label: Brand
+        type: object
+        fields:
+          - name: name
+            label: Όνομα
+            type: string
+            required: true
+          - name: profession
+            label: Επαγγελματικός τίτλος
+            type: string
+            required: true
+      - name: footer
+        label: Footer
+        type: object
+        fields:
+          - name: tagline
+            label: Περιγραφή footer
+            type: text
+
+  - name: home
+    label: Αρχική σελίδα
+    type: file
+    path: content/home.json
+    format: json
+    fields:
+      - name: hero
+        label: Hero
+        type: object
+        fields:
+          - name: eyebrow
+            label: Μικρός τίτλος
+            type: string
+          - name: line1
+            label: Τίτλος — γραμμή 1
+            type: string
+          - name: line2_prefix
+            label: Τίτλος — γραμμή 2 (πρώτο μέρος)
+            type: string
+          - name: line2_emphasis
+            label: Τίτλος — γραμμή 2 (τελευταίες λέξεις)
+            type: string
+          - name: line3_prefix
+            label: Τίτλος — γραμμή 3 (πρώτο μέρος)
+            type: string
+          - name: line3_accent
+            label: Τίτλος — χρωματισμένη λέξη
+            type: string
+          - name: subtitle
+            label: Υπότιτλος
+            type: text
+          - name: image
+            label: Hero εικόνα
+            type: image
+            description: Αν μείνει κενό, παραμένει η υπάρχουσα εικόνα του design. Ανέβασε νέα εικόνα εδώ για αντικατάσταση.
+            options:
+              media: images
+          - name: primary_button
+            label: Κουμπί 1
+            type: string
+          - name: secondary_button
+            label: Κουμπί 2
+            type: string
+      - name: services_title
+        label: Τίτλος υπηρεσιών
+        type: string
+      - name: services
+        label: Κάρτες αρχικής
+        type: object
+        list:
+          min: 3
+          max: 3
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: title
+            label: Τίτλος
+            type: string
+          - name: description
+            label: Περιγραφή
+            type: text
+      - name: cta
+        label: Κάτω πρόσκληση επικοινωνίας
+        type: object
+        fields:
+          - name: title
+            label: Τίτλος
+            type: string
+          - name: text
+            label: Κείμενο
+            type: text
+          - name: button
+            label: Κουμπί
+            type: string
+
+  - name: about
+    label: Ποια είμαι
+    type: file
+    path: content/about.json
+    format: json
+    fields:
+      - name: hero
+        label: Επάνω ενότητα
+        type: object
+        fields:
+          - { name: eyebrow, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Κύριος τίτλος, type: string }
+          - { name: lead, label: Εισαγωγή, type: text }
+          - { name: note_title, label: Πλαϊνός τίτλος, type: string }
+          - { name: note_text, label: Πλαϊνό κείμενο, type: text }
+      - name: intro
+        label: Λίγα λόγια
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - name: paragraphs
+            label: Παράγραφοι
+            type: text
+            list:
+              min: 3
+              max: 3
+      - name: values
+        label: Αξίες
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - name: items
+            label: Κάρτες
+            type: object
+            list:
+              min: 3
+              max: 3
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - { name: title, label: Τίτλος, type: string }
+              - { name: text, label: Κείμενο, type: text }
+      - name: cta
+        label: Κάτω ενότητα
+        type: object
+        fields:
+          - { name: title, label: Τίτλος, type: string }
+          - { name: text, label: Κείμενο, type: text }
+          - { name: button, label: Κουμπί, type: string }
+
+  - name: approach
+    label: Θεραπευτική προσέγγιση
+    type: file
+    path: content/approach.json
+    format: json
+    fields:
+      - name: hero
+        label: Επάνω ενότητα
+        type: object
+        fields:
+          - { name: eyebrow, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Κύριος τίτλος, type: string }
+          - { name: lead, label: Εισαγωγή, type: text }
+          - { name: note_title, label: Πλαϊνός τίτλος, type: string }
+          - { name: note_text, label: Πλαϊνό κείμενο, type: text }
+      - name: steps
+        label: Πώς δουλεύουμε
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - name: items
+            label: Βήματα
+            type: object
+            list:
+              min: 3
+              max: 3
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - { name: title, label: Τίτλος, type: string }
+              - { name: text, label: Κείμενο, type: text }
+      - name: quote
+        label: Quote
+        type: object
+        fields:
+          - { name: text, label: Κείμενο, type: text }
+          - { name: caption, label: Υπογραφή, type: string }
+      - name: framework
+        label: Πλαίσιο
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - name: paragraphs
+            label: Παράγραφοι
+            type: text
+            list:
+              min: 2
+              max: 2
+      - name: cta
+        label: Κάτω ενότητα
+        type: object
+        fields:
+          - { name: title, label: Τίτλος, type: string }
+          - { name: text, label: Κείμενο, type: text }
+          - { name: button, label: Κουμπί, type: string }
+
+  - name: services_page
+    label: Υπηρεσίες
+    type: file
+    path: content/services.json
+    format: json
+    fields:
+      - name: hero
+        label: Επάνω ενότητα
+        type: object
+        fields:
+          - { name: eyebrow, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Κύριος τίτλος, type: string }
+          - { name: lead, label: Εισαγωγή, type: text }
+          - { name: note_title, label: Πλαϊνός τίτλος, type: string }
+          - { name: note_text, label: Πλαϊνό κείμενο, type: text }
+      - name: main
+        label: Βασικές υπηρεσίες
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - name: items
+            label: Υπηρεσίες
+            type: object
+            list:
+              min: 3
+              max: 3
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - { name: title, label: Τίτλος, type: string }
+              - { name: text, label: Περιγραφή, type: text }
+      - name: note
+        label: Ενημερωτική ενότητα
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - name: paragraphs
+            label: Παράγραφοι
+            type: text
+            list:
+              min: 2
+              max: 2
+      - name: cta
+        label: Κάτω ενότητα
+        type: object
+        fields:
+          - { name: title, label: Τίτλος, type: string }
+          - { name: text, label: Κείμενο, type: text }
+          - { name: button, label: Κουμπί, type: string }
+
+  - name: therapy
+    label: Σχετικά με τη θεραπεία
+    type: file
+    path: content/therapy.json
+    format: json
+    fields:
+      - name: hero
+        label: Επάνω ενότητα
+        type: object
+        fields:
+          - { name: eyebrow, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Κύριος τίτλος, type: string }
+          - { name: lead, label: Εισαγωγή, type: text }
+          - { name: note_title, label: Πλαϊνός τίτλος, type: string }
+          - { name: note_text, label: Πλαϊνό κείμενο, type: text }
+      - name: faq
+        label: Συχνές ερωτήσεις
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - name: items
+            label: Ερωτήσεις
+            type: object
+            list:
+              min: 5
+              max: 5
+              collapsible:
+                collapsed: true
+                summary: "{question}"
+            fields:
+              - { name: question, label: Ερώτηση, type: string }
+              - { name: answer, label: Απάντηση, type: text }
+      - name: cta
+        label: Κάτω ενότητα
+        type: object
+        fields:
+          - { name: title, label: Τίτλος, type: string }
+          - { name: text, label: Κείμενο, type: text }
+          - { name: button, label: Κουμπί, type: string }
+
+  - name: space
+    label: Ο χώρος μου
+    type: file
+    path: content/space.json
+    format: json
+    fields:
+      - name: hero
+        label: Επάνω ενότητα
+        type: object
+        fields:
+          - { name: eyebrow, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Κύριος τίτλος, type: string }
+          - { name: lead, label: Εισαγωγή, type: text }
+          - { name: note_title, label: Πλαϊνός τίτλος, type: string }
+          - { name: note_text, label: Πλαϊνό κείμενο, type: text }
+      - name: gallery
+        label: Gallery
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - { name: intro, label: Εισαγωγή, type: text }
+          - name: items
+            label: Φωτογραφίες
+            type: object
+            list:
+              min: 5
+              max: 5
+              collapsible:
+                collapsed: true
+                summary: "{label}"
+            fields:
+              - { name: label, label: Λεζάντα, type: string }
+              - name: image
+                label: Εικόνα
+                type: image
+                options:
+                  media: images
+      - name: access
+        label: Πρόσβαση
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - name: paragraphs
+            label: Παράγραφοι
+            type: text
+            list:
+              min: 2
+              max: 2
+      - name: cta
+        label: Κάτω ενότητα
+        type: object
+        fields:
+          - { name: title, label: Τίτλος, type: string }
+          - { name: text, label: Κείμενο, type: text }
+          - { name: button, label: Κουμπί, type: string }
+
+  - name: contact
+    label: Επικοινωνία
+    type: file
+    path: content/contact.json
+    format: json
+    fields:
+      - name: hero
+        label: Επάνω ενότητα
+        type: object
+        fields:
+          - { name: eyebrow, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Κύριος τίτλος, type: string }
+          - { name: lead, label: Εισαγωγή, type: text }
+          - { name: note_title, label: Πλαϊνός τίτλος, type: string }
+          - { name: note_text, label: Πλαϊνό κείμενο, type: text }
+      - name: details
+        label: Στοιχεία επικοινωνίας
+        type: object
+        fields:
+          - { name: kicker, label: Μικρός τίτλος, type: string }
+          - { name: title, label: Τίτλος, type: string }
+          - { name: intro, label: Εισαγωγή, type: text }
+          - { name: email, label: Email, type: string }
+          - { name: phone, label: Τηλέφωνο, type: string }
+          - { name: location, label: Διεύθυνση / περιοχή, type: string }
+          - { name: sessions, label: Τρόπος συνεδριών, type: string }
+      - name: form
+        label: Φόρμα επικοινωνίας
+        type: object
+        fields:
+          - { name: name_label, label: Label ονόματος, type: string }
+          - { name: phone_label, label: Label τηλεφώνου, type: string }
+          - { name: email_label, label: Label email, type: string }
+          - { name: interest_label, label: Label ενδιαφέροντος, type: string }
+          - { name: message_label, label: Label μηνύματος, type: string }
+          - { name: message_placeholder, label: Placeholder μηνύματος, type: text }
+          - { name: submit_button, label: Κουμπί αποστολής, type: string }

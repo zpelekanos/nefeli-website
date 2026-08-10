@@ -1,0 +1,8 @@
+Common visual system extracted from the supplied homepage:
+- Background: #f8f5f0
+- Primary text: #3d3a36 / #364055
+- Accent: #977457
+- Serif headings: Cormorant Garamond
+- Body: Inter
+- Sticky translucent header
+- Thin warm-grey borders, restrained shadows, minimal rounded corners
