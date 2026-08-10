@@ -1,4 +1,9 @@
 {
+  "visibility": {
+    "hero": true,
+    "details": true,
+    "form": true
+  },
   "hero": {
     "eyebrow": "ΕΠΙΚΟΙΝΩΝΙΑ",
     "title": "Μπορείτε να ξεκινήσετε με ένα απλό μήνυμα.",

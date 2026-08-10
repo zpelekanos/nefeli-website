@@ -1,4 +1,10 @@
 {
+  "visibility": {
+    "hero": true,
+    "intro": true,
+    "values": true,
+    "cta": true
+  },
   "hero": {
     "eyebrow": "ΠΟΙΑ ΕΙΜΑΙ",
     "title": "Η θεραπευτική σχέση ξεκινά με ανθρώπινη επαφή.",

@@ -1,12 +1,18 @@
 {
+  "visibility": {
+    "hero": true,
+    "services": true,
+    "cta": true
+  },
   "hero": {
     "eyebrow": "ΚΛΙΝΙΚΗ ΨΥΧΟΛΟΓΟΣ",
     "line1": "Ένας ασφαλής χώρος",
     "line2_prefix": "για να κατανοήσετε τον",
-    "line2_emphasis": " εαυτό σας",
+    "line2_emphasis": "εαυτό σας",
     "line3_prefix": "και να προχωρήσετε",
-    "line3_accent": " μπροστά.",
+    "line3_accent": "μπροστά.",
     "subtitle": "Υποστήριξη, κατανόηση και καθοδήγηση προσαρμοσμένη στις δικές σας ανάγκες.",
+    "image": "",
     "primary_button": "Κλείστε Ραντεβού",
     "secondary_button": "Μάθετε περισσότερα"
   },

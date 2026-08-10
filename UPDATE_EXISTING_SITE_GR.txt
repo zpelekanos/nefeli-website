@@ -1,0 +1,13 @@
+ΠΩΣ ΝΑ ΠΕΡΑΣΕΙΣ ΑΥΤΗ ΤΗΝ ΕΚΔΟΣΗ ΣΤΟ ΥΠΑΡΧΟΝ GITHUB REPOSITORY
+
+1. Κάνε extract το ZIP.
+2. Μπες ΜΕΣΑ στον φάκελο ώστε να βλέπεις index.html, .pages.yml, assets, content κ.λπ.
+3. GitHub → repository nefeli-website → Add file → Upload files.
+4. Σύρε ΟΛΑ τα περιεχόμενα του φακέλου στο upload box.
+5. Το GitHub θα δείξει ότι αρκετά αρχεία θα αντικατασταθούν/ενημερωθούν. Αυτό είναι αναμενόμενο.
+6. Commit message: "Upgrade CMS controls".
+7. Πάτησε Commit changes.
+8. Περίμενε το αυτόματο Netlify deploy.
+9. Άνοιξε Pages CMS και κάνε refresh. Θα εμφανιστούν τα νέα ON/OFF και τα add/remove controls.
+
+Δεν χρειάζεται να ξαναστήσεις Netlify ή Pages CMS. Το repository παραμένει το ίδιο.

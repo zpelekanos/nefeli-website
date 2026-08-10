@@ -1,4 +1,11 @@
 {
+  "visibility": {
+    "hero": true,
+    "steps": true,
+    "quote": true,
+    "framework": true,
+    "cta": true
+  },
   "hero": {
     "eyebrow": "ΘΕΡΑΠΕΥΤΙΚΗ ΠΡΟΣΕΓΓΙΣΗ",
     "title": "Κατανόηση πριν από την αλλαγή.",

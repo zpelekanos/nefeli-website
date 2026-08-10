@@ -1,4 +1,10 @@
 {
+  "visibility": {
+    "hero": true,
+    "main": true,
+    "note": true,
+    "cta": true
+  },
   "hero": {
     "eyebrow": "ΥΠΗΡΕΣΙΕΣ",
     "title": "Υποστήριξη με βάση τις ανάγκες σας.",

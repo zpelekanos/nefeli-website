@@ -32,35 +32,83 @@
     });
   }
 
+  function fillListItem(item, row, index) {
+    item.setAttribute('data-cms-index', String(index));
+
+    item.querySelectorAll('[data-cms-field]').forEach((el) => {
+      setText(el, get(row, el.getAttribute('data-cms-field')));
+    });
+
+    const number = item.querySelector('.number');
+    if (number) number.textContent = String(index + 1).padStart(2, '0');
+    const detailIcon = item.querySelector('.detail-icon');
+    if (detailIcon) detailIcon.textContent = String(index + 1).padStart(2, '0');
+
+    const bgField = item.getAttribute('data-cms-bg-field');
+    if (bgField) {
+      const image = get(row, bgField);
+      if (image) {
+        item.style.backgroundImage = `url("${String(image).replace(/"/g, '\\"')}")`;
+        item.classList.add('has-image');
+      } else {
+        item.style.backgroundImage = '';
+        item.classList.remove('has-image');
+      }
+    }
+
+    const labelField = item.getAttribute('data-cms-label-field');
+    if (labelField) {
+      const label = get(row, labelField);
+      if (label !== undefined && label !== null) item.setAttribute('data-label', String(label));
+    }
+  }
+
   function applyLists(pageData) {
-    document.querySelectorAll('[data-cms-list][data-cms-index]').forEach((item) => {
-      const listPath = item.getAttribute('data-cms-list');
-      const index = Number(item.getAttribute('data-cms-index'));
-      const list = get(pageData, listPath);
-      if (!Array.isArray(list) || !list[index]) return;
-      const row = list[index];
+    const groups = new Map();
+    document.querySelectorAll('[data-cms-list]').forEach((item) => {
+      const path = item.getAttribute('data-cms-list');
+      const parent = item.parentElement;
+      if (!path || !parent) return;
+      const key = `${path}::${Array.from(document.querySelectorAll('*')).indexOf(parent)}`;
+      if (!groups.has(key)) groups.set(key, { path, parent, items: [] });
+      groups.get(key).items.push(item);
+    });
 
-      item.querySelectorAll('[data-cms-field]').forEach((el) => {
-        setText(el, get(row, el.getAttribute('data-cms-field')));
-      });
+    groups.forEach(({ path, parent, items }) => {
+      const rows = get(pageData, path);
+      if (!Array.isArray(rows) || !items.length) return;
 
-      const bgField = item.getAttribute('data-cms-bg-field');
-      if (bgField) {
-        const image = get(row, bgField);
-        if (image) {
-          item.style.backgroundImage = `url("${String(image).replace(/"/g, '\\"')}")`;
-          item.classList.add('has-image');
-        } else {
-          item.style.backgroundImage = '';
-          item.classList.remove('has-image');
-        }
+      const templates = items.map((item) => item.cloneNode(true));
+      const current = Array.from(parent.children).filter((el) => el.getAttribute && el.getAttribute('data-cms-list') === path);
+
+      while (current.length > rows.length) {
+        const el = current.pop();
+        el.remove();
       }
 
-      const labelField = item.getAttribute('data-cms-label-field');
-      if (labelField) {
-        const label = get(row, labelField);
-        if (label !== undefined && label !== null) item.setAttribute('data-label', String(label));
+      while (current.length < rows.length) {
+        const i = current.length;
+        const clone = templates[i % templates.length].cloneNode(true);
+        clone.classList.remove('open');
+        parent.appendChild(clone);
+        current.push(clone);
       }
+
+      current.forEach((item, index) => fillListItem(item, rows[index] || {}, index));
+    });
+  }
+
+  function applyVisibility(pageData) {
+    document.querySelectorAll('[data-cms-visible]').forEach((el) => {
+      const path = el.getAttribute('data-cms-visible');
+      const value = get(pageData, path);
+      // Backward-compatible: missing toggle means visible.
+      el.hidden = value === false;
+    });
+
+    document.querySelectorAll('[data-cms-hide-if-empty]').forEach((container) => {
+      const controlled = Array.from(container.querySelectorAll('[data-cms-visible]'));
+      if (controlled.length) container.hidden = controlled.every((el) => el.hidden);
     });
   }
 
@@ -82,6 +130,7 @@
       applySimple('page', pageData);
       applyAttributes(pageData);
       applyLists(pageData);
+      applyVisibility(pageData);
       document.documentElement.classList.add('cms-content-loaded');
     } catch (error) {
       console.warn('CMS content fallback is being used:', error);

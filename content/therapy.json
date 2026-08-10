@@ -1,4 +1,9 @@
 {
+  "visibility": {
+    "hero": true,
+    "faq": true,
+    "cta": true
+  },
   "hero": {
     "eyebrow": "ΣΧΕΤΙΚΑ ΜΕ ΤΗ ΘΕΡΑΠΕΙΑ",
     "title": "Τι να περιμένετε πριν από την πρώτη συνεδρία.",

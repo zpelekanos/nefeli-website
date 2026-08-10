@@ -1,4 +1,10 @@
 {
+  "visibility": {
+    "hero": true,
+    "gallery": true,
+    "access": true,
+    "cta": true
+  },
   "hero": {
     "eyebrow": "Ο ΧΩΡΟΣ ΜΟΥ",
     "title": "Ήρεμος, διακριτικός και φιλόξενος.",

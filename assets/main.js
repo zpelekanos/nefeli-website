@@ -8,13 +8,14 @@
     });
   }
 
-  document.querySelectorAll('.faq-button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const item = button.closest('.faq-item');
-      item.classList.toggle('open');
-      const indicator = button.querySelector('[data-indicator]');
-      if (indicator) indicator.textContent = item.classList.contains('open') ? '−' : '+';
-    });
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('.faq-button');
+    if (!button) return;
+    const item = button.closest('.faq-item');
+    if (!item) return;
+    item.classList.toggle('open');
+    const indicator = button.querySelector('[data-indicator]');
+    if (indicator) indicator.textContent = item.classList.contains('open') ? '−' : '+';
   });
 
   const demoForm = document.querySelector('[data-demo-form]');
