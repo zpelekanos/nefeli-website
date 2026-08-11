@@ -1,6 +1,6 @@
 {
   "visibility": {
-    "hero": false,
+    "hero": true,
     "services": true,
     "cta": true
   },
